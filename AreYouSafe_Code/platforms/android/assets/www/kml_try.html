@@ -1,0 +1,124 @@
+<html>
+<head>
+</head>
+<body>
+
+<div class="google_map" id="google_map" style="width: 750px; height: 500px;"></div>
+
+<script src="http://maps.googleapis.com/maps/api/js?v=3.2&amp;sensor=false"></script>
+<script src="geoxml3.js"></script>
+<script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/routeboxer/src/RouteBoxer.js"></script>
+
+
+<script>
+//kml file source
+var kmlTrack = "LocationHistory.kml";
+
+//create the map
+var map = new google.maps.Map(document.getElementById("google_map"), {
+	center: new google.maps.LatLng(42.1251, -80.0862),
+	zoom: 15,
+	mapTypeId: google.maps.MapTypeId.DRIVING
+});
+
+infowindow = new google.maps.InfoWindow({});
+
+//instantiate the geoxml library
+geoXml = new geoXML3.parser({
+	map: map,
+	infoWindow: infowindow,
+	singleInfoWindow: true,
+	zoom: true,
+	markerOptions: {optimized: false},
+	createMarker: function() {},
+	//the function called after parsing the kml file
+	afterParse: useTheData
+});
+
+geoXml.parse(kmlTrack);
+
+
+//placing a marker on the map
+function createMarker(map, coords, title) {
+	var marker = new google.maps.Marker({
+		position: coords,
+		map: map,
+		title: title,
+		draggable: false
+	});
+	return marker;
+}
+
+//Search places having coordinates inside the boxes
+function findPlaces(boxes) {
+	var data = "";
+	for (var i = 0; i < boxes.length; i++) {
+		//form the query string that will be sent via ajax
+		if (data != "") {
+			data += "&";
+		}
+		data += "boxes[]=" + boxes[i].getNorthEast().lat() + ":" + boxes[i].getNorthEast().lng() + "-" + boxes[i].getSouthWest().lat() + ":" + boxes[i].getSouthWest().lng();
+	}
+
+	if (data != "") {
+		//make an ajax request to query the database
+		//the JSON response
+		var response = '[{"title":"Dodona Site","latitude":"39.546135","longitude":"20.785105"},{"title":"Perama Cave","latitude":"39.695000","longitude":"20.846457"},{"title":"Trikorfo Castle","latitude":"39.298645","longitude":"20.367601"}]';
+		var places= JSON.parse(response);
+		for (i in places) {
+			var coords = new google.maps.LatLng(places[i].latitude, places[i].longitude);
+			createMarker(map, coords, places[i].title);
+		}
+	}
+}
+
+function useTheData(doc) {
+	var boxes, placemark;
+	var distance = 1.6; // km
+	var geoXmlDoc = doc[0];
+	//instantiate the RouteBoxer library
+	var routeBoxer = new RouteBoxer();
+	var currentBounds = map.getBounds();
+
+	if (!currentBounds) {
+		currentBounds = new google.maps.LatLngBounds();
+	}
+
+	for (var i = 0; i < geoXmlDoc.placemarks.length; i++) {
+		placemark = geoXmlDoc.placemarks[i];
+		if (placemark.track) {
+			if (placemark.track.coordinates.length > 0) {
+				var path = [];
+				var maxPointsCount = 50;
+				//if we have too many points on the track, we skip some
+				if (placemark.track.coordinates.length > maxPointsCount) {
+					var step = Math.ceil(placemark.track.coordinates.length / maxPointsCount);
+					for (var i = 0; i < placemark.track.coordinates.length; i += step) {
+						path.push(placemark.track.coordinates[i]);
+					}
+				} else {
+					path = placemark.track.coordinates;
+				}
+
+				//Display the track using a polyline
+				polyline = new google.maps.Polyline(pathOptions = {
+					path: path,
+					geodesic: true,
+					strokeColor: '#FF0000',
+					strokeWeight: 2,
+					strokeOpacity: 1.0,
+					opacity: 0.4,
+					map: map
+				});
+
+				boxes = routeBoxer.box(path, distance);
+				findPlaces(boxes, map);
+			}
+		}
+	}
+}
+</script>
+
+
+</body>
+</html>

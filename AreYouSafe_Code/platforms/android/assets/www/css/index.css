@@ -1,0 +1,360 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color:#E4E4E4;
+    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #A7A7A7),
+        color-stop(0.51, #E4E4E4)
+    );
+    background-attachment:fixed;
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size:12px;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    text-transform:uppercase;
+    width:100%;
+}
+
+/* Portrait layout (default) */
+.app {
+    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
+    position:absolute;             /* position in the center of the screen */
+    left:50%;
+    top:50%;
+    height:50px;                   /* text area height */
+    width:225px;                   /* text area width */
+    text-align:center;
+    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+                                   /* offset horizontal: half of text area width */
+}
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app {
+        background-position:left center;
+        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
+        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
+                                      /* offset horizontal: half of image width and text area width */
+    }
+}
+
+h1 {
+    font-size:24px;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+}
+
+.event {
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    color:#FFFFFF;
+    font-size:12px;
+    margin:0px 30px;
+    padding:2px 0px;
+}
+
+.event.listening {
+    background-color:#333333;
+    display:block;
+}
+
+.event.received {
+    background-color:#4B946A;
+    display:none;
+}
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+.blink {
+    animation:fade 3000ms infinite;
+    -webkit-animation:fade 3000ms infinite;
+}
+
+/****** Disclaimer page ****/
+.bg_color {
+    background: #476495;
+    height: 100%;
+    padding: 50% 10%;
+}
+.title {
+    font-size: 24px;
+    text-align: center;
+	font-weight:bolder;
+	color:#000;
+}
+
+.disclaimer {
+    color: #fff;
+    font-weight: normal;
+    padding: 25px 0 22px;
+    text-align: justify;
+}
+.disclaimer_content.ui-content {
+    padding: 0;
+    text-shadow: none;
+}
+
+button {
+    border: none;
+    border-radius: 5px;
+    border-right: medium none;
+    height: 32px;
+    margin: 0;
+    padding: 0;
+    width: 60%;
+}
+.ctn_btn {
+    text-align: center;
+	 padding-bottom: 0;
+}
+
+.ctn_btn .continue.ui-btn.ui-shadow.ui-corner-all {
+    color: #000;
+}
+.continue.ui-btn.ui-shadow.ui-corner-all {
+    border-radius: 0;
+    height: 35px;
+    line-height: 10px;
+    margin: 8px 12.5% 0;
+    width: 75%;
+}
+
+/***** home page *******/
+body { text-transform:none;}
+
+#tabs_list .ui-link.ui-btn.ui-tabs-anchor {
+    font-size: 11px;
+}
+#tabs {
+    padding: 0;
+}
+#setting > form label {
+    color: #aaa;
+    font-size: 12px;
+}
+.gmail_textbox {
+    padding-left: 24px;
+    width: 50%;
+}
+#login, #logout {
+    background: #000 none repeat scroll 0 0;
+    border-radius: 0;
+    box-shadow: none;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 20px;
+    margin-left: 24px;
+    text-shadow: none;
+    width: 50%;
+}
+#logout {display : none;}
+
+.border {
+    background: red none repeat scroll 0 0;
+    height: 2px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    width: 100%;
+}
+.enable_gps {
+    float: left;
+    margin-top: 18px;
+    width: 35%;
+}	
+
+element.style {
+    background-color: #e5e3df;
+    color: #000;
+    overflow: hidden;
+    position: relative;
+}
+.rep_issue_bottom_wrapper > div {
+    float: left;
+}
+.rep_issue_bottom_wrapper > div {
+    float: left;
+}
+.fwMaporImg {
+    background-color: #e5e3df;
+    color: #000;
+    height: 300px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+.fwMaporImg {
+    background-color: #e5e3df;
+    color: #000;
+    height: 300px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+* {
+}
+* {
+}
+.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
+    color: #333;
+    text-shadow: 0 1px 0 #f3f3f3;
+}
+.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
+    color: #333;
+    text-shadow: 0 1px 0 #f3f3f3;
+}
+body {
+    font-family: FuturaBkBTBook;
+    text-transform: uppercase;
+}
+body, input, select, textarea, button, .ui-btn {
+    font-family: sans-serif;
+    font-size: 1em;
+    line-height: 1.3;
+}
+body {
+    font-family: FuturaBkBTBook;
+    text-transform: uppercase;
+}
+html {
+    font-size: 100%;
+}
+.time.dropdown {
+    padding-left: 25px;
+    padding-top: 1px;
+    width: 58%;
+}
+
+/********* risk page***************/
+
+#risk label {
+    color: #aaa;
+    font-size: 12px;
+	text-transform: none;
+}
+#risk {
+    padding: 20px 20px 0 15px;
+}
+#risk .ui-input-text.ui-body-inherit.ui-corner-all.ui-shadow-inset {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border-color: red;
+    border-image: none;
+    border-left: 0 none red;
+    border-radius: 0 !important;
+    border-right: 0 none red;
+    border-top: 0 none red;
+    box-shadow: none !important;
+    margin-bottom: 15px;
+    width: 45px;
+}
+#tabs_list .ui-btn {line-height: 20px;}
+
+/******Re routing page ********/
+ /**#community_map{height:500px; position: relative;}**/
+ html, body {
+	 height:100%;
+	 margin:0px;
+	 padding:0px;
+}
+
+ #map-canvas, #map-canvas_community { 
+        height: 590px;
+        margin: 0px;
+        padding: 0px;
+}
+
+/* Histogram CSS*/
+	svg {
+         font: 10px sans-serif;
+	}
+
+	.bar {
+		stroke: white;
+		fill: steelBlue;
+
+	}
+
+	.axis path, .axis line {
+		fill: none;
+		stroke: #000;
+		shape-rendering: crispEdges;
+	}
+
+	rect.mover {
+		stroke: lightSteelBlue;
+		stroke-opacity: 0.3;
+		fill: lightSteelBlue;
+		fill-opacity: 0.1;
+	}
+	.ui-icon-loading {background:url(ajax-loader.gif) !important;background-size: 2.875em 2.875em !important;}
+	
+.ui-loader-verbose h1 {
+    color: black !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    margin: 0;
+    text-align: center;
+    text-shadow: none !important;
+}
+
+.enable_gps > label {
+    font-size: 13px;
+    font-weight: bolder;
+}
+#setting label {
+    font-size: 13px;
+    font-weight: bold;
+}

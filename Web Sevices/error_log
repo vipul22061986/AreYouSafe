@@ -1,0 +1,8 @@
+[28-Mar-2016 14:16:36 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/devika63/public_html/ws/lat_long_list.php:13) in /home1/devika63/public_html/ws/lat_long_list.php on line 20
+[28-Mar-2016 14:16:36 America/Chicago] PHP Warning:  mysqli_query(): Empty query in /home1/devika63/public_html/ws/lat_long_list.php on line 21
+[28-Mar-2016 14:22:32 America/Chicago] PHP Parse error:  syntax error, unexpected 'array' (T_ARRAY) in /home1/devika63/public_html/ws/lat_long_list.php on line 15
+[28-Mar-2016 14:23:06 America/Chicago] PHP Parse error:  syntax error, unexpected 'array' (T_ARRAY) in /home1/devika63/public_html/ws/lat_long_list.php on line 15
+[28-Mar-2016 14:23:53 America/Chicago] PHP Parse error:  syntax error, unexpected ''lat'' (T_CONSTANT_ENCAPSED_STRING), expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$' in /home1/devika63/public_html/ws/lat_long_list.php on line 19
+[28-Mar-2016 14:27:11 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/devika63/public_html/ws/lat_long_list.php:18) in /home1/devika63/public_html/ws/lat_long_list.php on line 24
+[28-Mar-2016 14:27:11 America/Chicago] PHP Warning:  mysqli_query(): Empty query in /home1/devika63/public_html/ws/lat_long_list.php on line 25
+[28-Mar-2016 14:27:29 America/Chicago] PHP Warning:  mysqli_query(): Empty query in /home1/devika63/public_html/ws/lat_long_list.php on line 25
